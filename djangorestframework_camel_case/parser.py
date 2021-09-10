@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
-from rest_framework.parsers import JSONParser, ParseError, six
+from rest_framework.parsers import JSONParser, ParseError
 from django.conf import settings
 from djangorestframework_camel_case.util import underscoreize
 
@@ -15,4 +15,4 @@ class CamelCaseJSONParser(JSONParser):
             data = stream.read().decode(encoding)
             return underscoreize(json.loads(data))
         except ValueError as exc:
-            raise ParseError('JSON parse error - %s' % six.text_type(exc))
+            raise ParseError('JSON parse error - %s' % str(exc))
